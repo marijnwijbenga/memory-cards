@@ -1,10 +1,10 @@
-<div>
+<div class="md:container mx-auto">
   <app-card-grid>
-    <app-card>
-      <div  *ngFor="let card of cards">
-        {{ card.name }}
-      </div>
-
+    <app-card *ngFor="let item of emptyGridArray" class="bg-yellow-500 rounded h-40">
+<!--      <div  *ngFor="let card of cards">-->
+<!--        {{ card.name }}-->
+<!--      </div>-->
+      {{ cards[randomNumber()].name }}
     </app-card>
   </app-card-grid>
 </div>

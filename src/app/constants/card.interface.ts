@@ -1,5 +1,5 @@
 export interface Card {
-  id: Number;
-  name: String;
-  imgPath: String;
+  id: number;
+  name: string;
+  imgPath: string;
 }
