@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
 
-  constructor() { }
+  @Input() image: string = '';
+  @Input() open: boolean = false;
 
-  ngOnInit(): void {
+  @Output() selected: EventEmitter<void> = new EventEmitter();
+
+  onOpen(): void {
+   this.selected.emit();
   }
-
 }
