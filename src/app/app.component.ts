@@ -39,21 +39,26 @@ export class AppComponent implements OnInit {
   }
 
   onSelectCard(image: string, index: number): void {
-    switch(this.activeImage) {
+    switch (this.activeImage) {
       case '':
         this.openImageIdList.push(index);
         this.activeImage = image;
         break;
       case image:
         this.activeImage = '';
+        this.openImageIdList.push(index);
         break;
       default:
-        this.activeImage = '';
+        this.openImageIdList.push(index);
         this.closeImages();
+        this.activeImage = '';
     }
   }
 
   private closeImages(): void {
-
+    setTimeout(() => {
+      this.openImageIdList.splice(this.openImageIdList.length - 2, 2);
+    }, 1000);
   }
+
 }
