@@ -1,4 +1,15 @@
-<div>
-  <button
-    class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500">Hello</button>
+<div class="md:container mx-auto">
+  <app-score
+    [score]="score"
+    [turns]="turn"
+    [gameFinished]="gameFinished"
+  ></app-score>
+  <app-card-grid>
+    <app-card
+      *ngFor="let image of images; index as index"
+      [open]="openImageIdList.includes(index)"
+      [image]="image"
+      (selected)="onSelectCard(image, index)">
+    </app-card>
+  </app-card-grid>
 </div>
