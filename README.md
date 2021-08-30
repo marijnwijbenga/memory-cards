@@ -1,4 +1,4 @@
-# Mario MemoryCards Card game made with Angular
+# Mario MemoryCards game made with Angular
 
 
 
