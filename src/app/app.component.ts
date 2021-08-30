@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
   images: string[] = [];
   activeImage: string = '';
   openImageIdList: number[] = [];
+  score: number = 0;
+  turn: number = 0;
+  gameFinished: boolean = false;
 
   ngOnInit(): any {
     this.images = [...IMAGES, ...IMAGES];
@@ -39,26 +42,38 @@ export class AppComponent implements OnInit {
   }
 
   onSelectCard(image: string, index: number): void {
+    this.turn++;
+    if(this.openImageIdList.length === 15) {
+      this.gameFinished = true;
+    }
     switch (this.activeImage) {
       case '':
         this.openImageIdList.push(index);
         this.activeImage = image;
         break;
       case image:
-        this.activeImage = '';
         this.openImageIdList.push(index);
+        this.activeImage = '';
+        this.addScore(this.turn);
         break;
       default:
         this.openImageIdList.push(index);
-        this.closeImages();
+        this.closeImages(index);
         this.activeImage = '';
     }
   }
 
-  private closeImages(): void {
-    setTimeout(() => {
-      this.openImageIdList.splice(this.openImageIdList.length - 2, 2);
-    }, 1000);
+  addScore(turns: number): number {
+    if (turns < 16) {
+      return this.score = Math.ceil(turns / 16 * 1000);
+    } else {
+      return this.score = Math.ceil(16 / turns * 1000);
+    }
   }
 
+  private closeImages(index: number): number {
+    return setTimeout(() => {
+       this.openImageIdList.splice(this.openImageIdList.indexOf(index) - 1, 2);
+    }, 1000);
+  }
 }

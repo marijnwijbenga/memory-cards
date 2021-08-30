@@ -1,4 +1,9 @@
 <div class="md:container mx-auto">
+  <app-score
+    [score]="score"
+    [turns]="turn"
+    [gameFinished]="gameFinished"
+  ></app-score>
   <app-card-grid>
     <app-card
       *ngFor="let image of images; index as index"
