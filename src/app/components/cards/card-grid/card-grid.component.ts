@@ -5,11 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './card-grid.component.html',
   styleUrls: ['./card-grid.component.scss']
 })
-export class CardGridComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class CardGridComponent {
 
 }
