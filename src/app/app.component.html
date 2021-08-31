@@ -1,5 +1,10 @@
 <div class="md:container mx-auto">
-  <app-modal *ngIf="gameFinished"></app-modal>
+  <app-modal
+    *ngIf="!gameFinished"
+    [score]="score"
+    [turns]="turn"
+    (newGame)="resetGame()"
+  ></app-modal>
   <app-score
     [score]="score"
     [turns]="turn"
