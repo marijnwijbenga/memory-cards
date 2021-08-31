@@ -8,15 +8,16 @@ const IMAGES: string[] = [
   './assets/img/mario-icons/Goomba.png',
   './assets/img/mario-icons/Mushroom - 1UP.png',
   './assets/img/mario-icons/Mushroom - Mega.png',
-  './assets/img/mario-icons/Paper Mario.png'
+  './assets/img/mario-icons/Paper Mario.png',
 ];
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  TILES_AMOUNT: number = 0;
 
   images: string[] = [];
   activeImage: string = '';
@@ -24,15 +25,22 @@ export class AppComponent implements OnInit {
   score: number = 0;
   turn: number = 0;
   gameFinished: boolean = false;
-  TILES_AMOUNT: number = this.images.length;
 
   ngOnInit(): any {
     this.images = [...IMAGES, ...IMAGES];
+    this.refresh();
+    this.TILES_AMOUNT = this.images.length;
+  }
+
+  refresh() {
+    this.score = 0;
+    this.turn = 0;
+    this.gameFinished = false;
     this.images = this.shuffleArray(this.images);
+    this.openImageIdList = [];
   }
 
   shuffleArray(array: string[]): string[] {
-    // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];
@@ -44,9 +52,6 @@ export class AppComponent implements OnInit {
 
   onSelectCard(image: string, index: number): void {
     this.turn++;
-    if (this.openImageIdList.length === 15) {
-      this.gameFinished = true;
-    }
     switch (this.activeImage) {
       case '':
         this.openImageIdList.push(index);
@@ -56,6 +61,9 @@ export class AppComponent implements OnInit {
         this.openImageIdList.push(index);
         this.activeImage = '';
         this.addScore(this.turn);
+        if (this.openImageIdList.length === this.TILES_AMOUNT) {
+          this.gameFinished = true;
+        }
         break;
       default:
         this.openImageIdList.push(index);
@@ -65,11 +73,9 @@ export class AppComponent implements OnInit {
   }
 
   addScore(turns: number): number {
-    if (turns < this.TILES_AMOUNT) {
-      return this.score = Math.ceil(turns / this.TILES_AMOUNT * 1000);
-    } else {
-      return this.score = Math.ceil(this.TILES_AMOUNT / turns * 1000);
-    }
+    return turns < this.TILES_AMOUNT
+      ? (this.score = Math.ceil((turns / this.TILES_AMOUNT) * 1000))
+      : (this.score = Math.ceil((this.TILES_AMOUNT / turns) * 1000));
   }
 
   private closeImages(index: number): number {
