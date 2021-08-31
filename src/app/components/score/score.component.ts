@@ -10,9 +10,9 @@ export class ScoreComponent {
   @Input() turns: number = 0;
   @Input() gameFinished: boolean = false;
 
-  @Output() gameRefresh: EventEmitter<void> = new EventEmitter();
+  @Output() newGame: EventEmitter<void> = new EventEmitter();
 
-  doRefresh(): void {
-    this.gameRefresh.emit();
+  onNewGame(): void {
+    this.newGame.emit();
   }
 }

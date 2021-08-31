@@ -11,13 +11,15 @@ const IMAGES: string[] = [
   './assets/img/mario-icons/Paper Mario.png',
 ];
 
+const MAX_SCORE: number = 1000;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  TILES_AMOUNT: number = 0;
+  amountOfTiles: number = 0;
 
   images: string[] = [];
   activeImage: string = '';
@@ -28,11 +30,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): any {
     this.images = [...IMAGES, ...IMAGES];
-    this.refresh();
-    this.TILES_AMOUNT = this.images.length;
+    this.resetGame();
+    this.amountOfTiles = this.images.length;
   }
 
-  refresh() {
+  resetGame(): void {
     this.score = 0;
     this.turn = 0;
     this.gameFinished = false;
@@ -60,8 +62,8 @@ export class AppComponent implements OnInit {
       case image:
         this.openImageIdList.push(index);
         this.activeImage = '';
-        this.addScore(this.turn);
-        if (this.openImageIdList.length === this.TILES_AMOUNT) {
+        this.calculateScore();
+        if (this.openImageIdList.length === this.amountOfTiles) {
           this.gameFinished = true;
         }
         break;
@@ -72,10 +74,13 @@ export class AppComponent implements OnInit {
     }
   }
 
-  addScore(turns: number): number {
-    return turns < this.TILES_AMOUNT
-      ? (this.score = Math.ceil((turns / this.TILES_AMOUNT) * 1000))
-      : (this.score = Math.ceil((this.TILES_AMOUNT / turns) * 1000));
+  calculateScore(): void {
+    const modifier: number =
+      this.turn < this.amountOfTiles
+        ? this.turn / this.amountOfTiles
+        : this.amountOfTiles / this.turn;
+
+    this.score = Math.ceil(modifier * MAX_SCORE);
   }
 
   private closeImages(index: number): number {
