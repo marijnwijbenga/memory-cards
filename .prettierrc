@@ -1,0 +1,12 @@
+{
+  "singleQuote": true,
+  "semi": true,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}

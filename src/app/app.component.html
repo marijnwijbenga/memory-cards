@@ -2,7 +2,9 @@
   <app-score
     [score]="score"
     [turns]="turn"
-    [gameFinished]="gameFinished">
+    [gameFinished]="gameFinished"
+    (gameRefresh)="refresh()"
+  >
   </app-score>
   <app-card-grid>
     <app-card
