@@ -1,4 +1,6 @@
 .score {
   @apply mx-auto max-w-3xl flex flex-row justify-evenly m-12 text-xl border-2 border-yellow-500 rounded shadow flex-wrap items-center;
 }
-
+.score h1 {
+  @apply text-yellow-600 text-2xl font-semibold;
+}
