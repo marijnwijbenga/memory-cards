@@ -3,11 +3,7 @@
   <div>{{ turns }} turns</div>
   <div>{{ score }} points</div>
   <div>
-    <button
-      (click)="onNewGame()"
-      class="button">
-      new game
-    </button>
+    <ng-content></ng-content>
   </div>
 </div>
 

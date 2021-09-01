@@ -1,16 +1,19 @@
-<div class="md:container mx-auto">
+<div class="game-container">
   <app-modal
     *ngIf="!gameFinished"
     [score]="score"
-    [turns]="turn"
-    (newGame)="resetGame()"
-  ></app-modal>
+    [turns]="turn">
+    <app-new-game-button
+      (newGame)="resetGame()">
+    </app-new-game-button>
+  </app-modal>
   <app-score
     [score]="score"
     [turns]="turn"
-    [gameFinished]="gameFinished"
-    (newGame)="resetGame()"
-  >
+    [gameFinished]="gameFinished">
+    <app-new-game-button
+      (newGame)="resetGame()">
+    </app-new-game-button>
   </app-score>
   <app-card-grid>
     <app-card

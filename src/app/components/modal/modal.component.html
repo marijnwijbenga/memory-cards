@@ -10,22 +10,9 @@
       You completed the game in <h1>{{ turns }}</h1> turns, with a score of <h1>{{ score }}</h1>
     </div>
 
-
-    <ng-content></ng-content>
-
-
-    <!--    todo dit naar eigen component ivm code repetition in ts file -->
     <div class="modal-button">
-      <button
-        class="button"
-        (click)="onNewGame()"
-        type="button">
-        Play again
-      </button>
+      <ng-content></ng-content>
     </div>
-
-    <!-- todo einde newGameButton component -->
-
 
   </div>
 </div>

@@ -23,9 +23,13 @@
 }
 
 .modal-text {
-  @apply text-xl text-gray-900;
+  @apply text-xl text-gray-900 text-center;
 }
 
 .modal-text h1 {
   @apply inline-block text-green-800;
+}
+
+.modal-button {
+  @apply text-center mt-8;
 }
