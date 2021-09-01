@@ -27,14 +27,16 @@ export class AppComponent implements OnInit {
   score: number = 0;
   turn: number = 0;
   gameFinished: boolean = false;
+  imageSource: string = 'assets/img/mario-win.jpg';
+  imageAlt: string = 'Mario Win Image';
 
   ngOnInit(): any {
     this.images = [...IMAGES, ...IMAGES];
-    this.resetGame();
+    this.onNewGame();
     this.amountOfTiles = this.images.length;
   }
 
-  resetGame(): void {
+  onNewGame(): void {
     this.score = 0;
     this.turn = 0;
     this.gameFinished = false;

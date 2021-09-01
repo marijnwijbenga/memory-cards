@@ -1,19 +1,19 @@
-<div class="game-container">
-  <app-modal
-    *ngIf="gameFinished"
-    [score]="score"
-    [turns]="turn">
-    <app-new-game-button
-      (newGame)="resetGame()">
-    </app-new-game-button>
+<app-page>
+  <app-modal *ngIf="gameFinished" [imageAlt]="imageAlt" [imageSource]="imageSource">
+    <h1 slot="title">You completed the game!!!</h1>
+    You completed the game in <span class="highlight">{{ turn }}</span> turns,
+    with a score of <span class="highlight">{{ score }}</span>
+    <app-button (click)="onNewGame()" slot="button">
+      new game
+    </app-button>
   </app-modal>
   <app-score
     [score]="score"
     [turns]="turn"
     [gameFinished]="gameFinished">
-    <app-new-game-button
-      (newGame)="resetGame()">
-    </app-new-game-button>
+    <app-button (click)="onNewGame()">
+      new game
+    </app-button>
   </app-score>
   <app-card-grid>
     <app-card
@@ -23,4 +23,4 @@
       (selected)="onSelectCard(image, index)">
     </app-card>
   </app-card-grid>
-</div>
+</app-page>
