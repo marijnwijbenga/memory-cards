@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent {
-  @Input() turns: number = 0;
-  @Input() score: number = 0;
+  @Input() imageSource?: string;
+  @Input() imageAlt?: string;
 }
