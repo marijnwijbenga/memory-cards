@@ -1,13 +1,17 @@
+require('dotenv').config();
+const enablePurge = process.env.NODE_ENV || false;
+
 module.exports = {
-  prefix: "",
+  prefix: '',
   purge: {
-    content: ["./src/**/*.{html,ts}"],
+    enabled: enablePurge,
+    content: ['./src/**/*.{html,ts,scss}'],
   },
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   variants: {
     extend: {
-      backgroundColor: ["active"],
-      innerShadow: ["active"],
+      backgroundColor: ['active'],
+      innerShadow: ['active'],
     },
   },
   plugins: [],
