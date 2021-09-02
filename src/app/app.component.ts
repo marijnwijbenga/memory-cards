@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   score: number = 0;
   turn: number = 0;
   gameFinished: boolean = false;
-  imageSource: string = 'assets/img/mario-win.jpg';
+  imageSource: string = './assets/img/mario-win.jpg';
   imageAlt: string = 'Mario Win Image';
 
   ngOnInit(): any {
